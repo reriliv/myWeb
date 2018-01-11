@@ -1,0 +1,7 @@
+.access-record-block{ margin: 1.5rem auto 0; }
+.access-record{ overflow: hidden; }
+.access-record-item { margin-bottom: .25rem; background: #fff; }
+.access-record-item p { display: flex; justify-content: space-between; margin: 0 auto; padding: .25rem; width: 90%; }
+.access-record-item p span:first-child{ color: #333; font-weight: bold; }
+.access-record-item p:first-child span:last-child{ color: #47aee1; font-weight: bold; }
+.access-record-item p:last-child span:last-child{ color: #999; }

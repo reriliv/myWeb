@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="css/access.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body id="credit-body">
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="../index.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">门禁通行记录</p>
+    </div>
+  </header>
+  <section>
+    <div class="access-record-block">
+      <div class="access-record">
+        <ul class="access-record-list">
+          <li class="access-record-item">
+            <p>
+              <span>101</span>
+              <span>刷卡</span>
+            </p>
+            <p>
+              <span>增城-西3门通道</span>
+              <span>2017-09-10 10:29</span>
+            </p>
+          </li>
+          <li class="access-record-item">
+            <p>
+              <span>101</span>
+              <span>刷卡</span>
+            </p>
+            <p>
+              <span>增城-西3门通道</span>
+              <span>2017-09-10 10:29</span>
+            </p>
+          </li>
+          <li class="access-record-item">
+            <p>
+              <span>101</span>
+              <span>刷卡</span>
+            </p>
+            <p>
+              <span>增城-西3门通道</span>
+              <span>2017-09-10 10:29</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/myfetch.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="./js/record_logic.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+</body>
+</html>

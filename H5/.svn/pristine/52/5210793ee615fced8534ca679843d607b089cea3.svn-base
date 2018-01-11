@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/card.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a href="../index.html" class="back-btn"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">余额充值</p>
+    </div>
+  </header>
+  <section>
+    <div class="card-block">
+      
+    </div>
+  </section>
+  <footer></footer>
+  <script src="../js/jquery.min.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+    (function(){
+
+      $(".loading").fadeOut(500, "linear", function(){
+        $(this).remove();
+      });
+
+      let showData = function(data){
+        console.info(data);
+        data.ResultObject.List.forEach( (card, i) => {
+          let [cardState, state, css] = ["", "", ""];
+          switch (card.State){
+            case 0:
+            [cardState, css, state] = ["lost", "icon-zliconstop01", "挂失"];
+            break;
+            case 1:
+            [cardState, css, state] = ["using", "icon-gou", "正用"];
+            break;
+            case 2:
+            [cardState, css, state] = ["exit", "icon-cha", "退卡"];
+            break;
+          }
+          // console.log(cardState, css, state);
+          let dom = `<li class="card-item" id=${card.Id}>
+                       <div class="card-info">
+                         <div>
+                           <a class="card-num">${card.CardNo}</a>
+                           <span class="card-state ${cardState}">
+                             <span class="iconfont ${css}"></span>
+                             <span class="state-label">${state}</span>
+                           </span>
+                         </div>
+                         <div>
+                           <span class="card-balance">￥${card.Money}</span>
+                           <span></span>
+                         </div>
+                       </div>
+                       <div>
+                         <p>副卡：</p>
+                         <ul class="second-card-list">
+                         </ul>
+                       </div>
+                     </li>`;
+          $(".card-block").append(dom);
+          if (card.ViceCards.length > 0) {
+            card.ViceCards.forEach( (child, j) => {
+              switch (child.State){
+                case 0:
+                [cardState, css, state] = ["lost", "icon-zliconstop01", "挂失"];
+                break;
+                case 1:
+                [cardState, css, state] = ["using", "icon-gou", "正用"];
+                break;
+                case 2:
+                [cardState, css, state] = ["exit", "icon-cha", "退卡"];
+                break;
+              }
+              console.info(child);
+              let childDom = `<li class="secondCard-item">
+                                <span class="secondCard-name">${child.CardNo}</span>
+                                <span class=${cardState}><i class="iconfont ${css}"></i>${state}</span>
+                              </li>`;
+              $(".card-block").find(".card-item").eq(i).find(".second-card-list").append(childDom);
+            });
+          }
+        });
+      };
+
+      let init = function(){
+        fetch("http://120.24.227.174:402/api/Cards/GetMyCards", 
+              {
+                method: "GET",
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                           "Authorization": localStorage.getItem("token")
+                         }
+              }).then(function(res){
+          console.info(res);
+          if (res.ok) {
+            res.json().then(function(data){
+              showData(data);
+            });
+          }
+        }, function(err){
+          console.error(err);
+        });
+      };
+
+      init();
+
+      let clickEvent = function(){
+        /*let cardNums = document.querySelectorAll(".card-num");
+        for (let i = 0; i < cardNums.length; i++) {
+          cardNums[i].onclick = function(){
+            console.info(this.style);
+          }
+        }
+        let secondCards = document.querySelectorAll(".second-card");
+        for (let i = 0; i < secondCards.length; i++) {
+          secondCards[i].onclick = function(){
+            console.log(this.style);
+          }
+        }*/
+        $(".card-block").on("click", ".second-card", function(){
+          $(this).parent().next().find(".second-card-list").slideToggle(250);
+        });
+
+        $(".card-block").on("click", ".card-info", function(){
+          if ($(this).find(".state-label").text() == "正用") {
+            let cardNum = $(this).find(".card-num").text();
+            sessionStorage.setItem("cardNum", cardNum);
+            window.location.href = "./recharge.html";
+          }
+        });
+
+      }()
+    })()
+  </script>
+</body>
+</html>

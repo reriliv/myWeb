@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="css/account.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="./account.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">授权记录</p>
+    </div>
+  </header>
+  <section>
+    <div class="authorization-record-block">
+      <div class="authorization-record-select">
+        <a class="authorization-record-option option-active">授权</a>
+        <a class="authorization-record-option">被授权</a>
+      </div>
+      <div class="authorization-record-list-block">
+        <ul class="authored-record-list">
+          <li class="authorization-record-item">
+            <div>
+              <p>权限</p>
+              <p>日期</p>
+            </div>
+            <div>
+              <p>姓名</p>
+            </div>
+          </li>
+          <li class="authorization-record-item">
+            <div>
+              <p>权限</p>
+              <p>日期</p>
+            </div>
+            <div>
+              <p>姓名</p>
+            </div>
+          </li>
+          <li class="authorization-record-item">
+            <div>
+              <p>权限</p>
+              <p>日期</p>
+            </div>
+            <div>
+              <p>姓名</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="authored-record-list">
+          <li class="authorization-record-item">
+            <div>
+              <p>权限</p>
+              <p>日期</p>
+            </div>
+            <div>
+              <p>姓名</p>
+              <a class="cancel-authorization">取消授权</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/myfetch.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="./js/authorization_logic.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+</body>
+</html>

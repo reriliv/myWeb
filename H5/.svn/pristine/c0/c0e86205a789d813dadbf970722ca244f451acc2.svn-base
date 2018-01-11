@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/card.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a href="reportLostList.html" class="back-btn"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">在线挂失</p>
+    </div>
+  </header>
+  <section>
+    <div class="report-block">
+      <div class="card-item">
+        <div class="card-info">
+          <div>
+            <a class="card-num">9562144578</a>
+            <span class="card-state">
+              <span class="iconfont"></span>
+              <span class="state-label"></span>
+            </span>
+          </div>
+          <div>
+            <span class="card-balance"></span>
+            <span class="card-type"></span>
+          </div>
+        </div>
+      </div>
+      <p class="report-remark">挂失后，将暂时禁用该卡可使用的所有功能</p>
+      <a class="sure"></a>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+  <script src="../js/myfetch.js"></script>
+  <script src="js/lost_logic.js"></script>
+
+    <script src="../js/init.js"></script>
+</body>
+</html>

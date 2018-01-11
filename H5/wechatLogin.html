@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>微信登录</title>
+  <link rel="stylesheet" href="./css/common.css"/>
+  <link rel="stylesheet" href="./css/loading.css"/>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/loading.js"></script>
+    <script src="js/init.js"></script>
+  <script>
+    let parseData = function(){
+      const _URL = decodeURI(window.location.href);
+      let jsonStr = _URL.split("?")[1];
+      let jsonData = jsonStr.substr(5, jsonStr.length);
+      let data = JSON.parse(jsonData);
+      alert(data.Message);
+      if (data.StatusCode == 10000) {
+        // 保存token	
+        localStorage.setItem("token", `basic ${data.ResultObject}`);
+        window.location.href = "./index.html";
+      }else if (data.StatusCode == 20000) {
+        window.location.href = "./login.html";
+      }else{
+        sessionStorage.setItem("Info", JSON.stringify(data));
+        window.location.href = "./binding.html";
+      }
+    }();
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="css/common.css"/>
+  <link rel="stylesheet" href="css/iconfont.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/loading.css"/>
+  <title>选择支付方式</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href=""><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">选择支付方式</p>
+    </div>
+  </header>
+  <section>
+    <div class="pay-block">
+      <div class="money-item">
+        <p class="pay-money">￥100.00</p>
+        <!-- <p class="discount-tips">已优惠50.00元</p> -->
+      </div>
+      <ul class="pay-list"></ul>
+      <!-- <div class="pay-item">
+        <div class="pay-type-icon"><img src="images/wechatPay.png" alt="微信支付"></div>
+        <div>
+          <p class="pay-name">微信支付</p>
+          <p class="pay-remarks">用微信支付，安全便捷</p>
+        </div>
+        <div>
+          <label class="using-check checked"></label>
+          <input type="checkbox"/>
+        </div>
+      </div>
+      <div class="pay-item">
+        <div class="pay-type-icon"><img src="images/wechatPay.png" alt="微信支付"></div>
+        <div>
+          <p class="pay-name">支付宝</p>
+          <p class="pay-remarks">支持有支付宝，网银的用户使用</p>
+        </div>
+        <div>
+          <label class="using-check default"></label>
+          <input type="checkbox"/>
+        </div>
+      </div> -->
+      <a  class="confirm-btn">确定</a>
+    </div>
+  </section>
+  <footer></footer>
+  <script src="js/mobile.rem.js"></script>
+  <script src="js/AlertMsg.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/myfetch.js"></script>
+    <script src="js/init.js"></script>
+  <script>
+    (function(){
+
+      let showMsg = function(data){
+        // console.log(data);
+        HideMsg(data.Message);
+        if (data.StatusCode == 10000) {
+          window.location.href = './card/accountRecord.html';
+        }
+      };
+
+      let showItem = function(data){
+        // $(".back-btn").attr("href", sessionStorage.getItem("returnPage"));
+        console.info(data);
+        $(".loading").fadeOut(500);
+        data.ResultObject.forEach( (item, i) => {
+          let css = "";
+          if (i == 0) {
+            css = "checked";
+          }else{
+            css = "default";
+          }
+          let dom = `<li class="pay-item" id=${item.Code}>
+                       <div class="pay-type-icon"><img src="${item.Icon}" alt="${item.MethodName}"></div>
+                       <div>
+                         <p class="pay-name">${item.MethodName}</p>
+                         <p class="pay-remarks">${item.Description}</p>
+                       </div>
+                       <div>
+                         <label class="using-check ${css}"></label>
+                         <input type="checkbox">
+                       </div>
+                     </li>`;
+          $(".pay-list").append(dom);
+        });
+      };
+
+      let init = function(){
+        $(".pay-money").text(`￥${localStorage.getItem("order_price")}`);
+        $(".back-btn").attr("href", sessionStorage.getItem("lastPage"));
+        let fetch = new MyFetch();
+        fetch.get(
+          1,
+          `/api/Pay/PaymentMethod`,
+          null,
+          showItem
+        );
+        /*fetch("http://120.24.227.174:402/api/Pay/PaymentMethod",
+              { 
+                method: "GET",
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                           "Authorization": localStorage.getItem("token")
+                         }
+              }
+        ).then(function(res){
+          if (res.ok) {
+            res.json().then(function(data){
+              showItem(data);
+            });
+          }
+        }, function(err){
+          console.error(err);
+        });*/
+      };
+
+      init();
+
+      $(".pay-list").on("click", ".pay-item", function(){
+        let _checked = $(this).find("input[type='checkbox']").attr("checked");
+        if (!_checked) {
+          $(this).siblings().find(".using-check").addClass("default").removeClass("checked");
+          $(this).siblings().find("input[type='checkbox']").attr("checked", false);
+          $(this).find(".using-check").addClass("checked").removeClass("default");
+          $(this).find("input[type='checkbox']").attr("checked", "checked");
+        }
+      });
+
+      $(".confirm-btn").on("click", function(){
+        let payMethod = $(".checked").parent().parent().attr("id");
+        console.log(payMethod);
+        let myfetch = new MyFetch();
+        AlertMsg("充值中...");
+        myfetch.send(
+        2,
+        // `/api/Pay/AddPayOrder`,
+        `/api/Cards/Recharge`,
+        // `PayNo=${localStorage.getItem("orderId")}&PaymentMethod=${payMethod}`,
+        `CardId=${localStorage.getItem("chargeCardId")}&Money=${localStorage.getItem("order_price")*100}`,
+        showMsg
+        );
+      });
+
+    })()
+  </script>
+</body>
+</html>

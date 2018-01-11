@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>卡城科技</title>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/account.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="PassWord.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">修改支付密码</p>
+    </div>
+  </header>
+  <section>
+    <div class="pw-block">
+      <div class="using-password">
+        <span>启用支付密码</span>
+        <span>
+          <label class="using-check default"></label>
+          <input type="checkbox"/>
+        </span>
+      </div>
+      <div class="pw-item" id="oldPwd"><input type="password" class="old-password" placeholder="旧密码" /></div>
+      <div class="pw-item"><input type="password" class="new-password" placeholder="新密码" /></div>
+      <div class="pw-item"><input type="password" class="confirm-new-password" placeholder="确认新密码" /></div>
+      <a class="confirm-change-btn disabled">确认修改</a>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/mobile.rem.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/myfetch.js"></script>
+  <script src="js/payPW_logic.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+</body>
+</html>

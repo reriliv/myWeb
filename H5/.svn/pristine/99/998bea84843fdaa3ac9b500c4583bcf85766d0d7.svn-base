@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/order.css?v=2.0.0"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="order.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">菜品选择</p>
+      <p class="choose-date">2017-10-18</p>
+    </div>
+  </header>
+  <section>
+    <div class="dishes-block">
+      <div class="food-type">
+        <ul>
+          
+        </ul>
+      </div>
+      <div class="dishes-content">
+        <ul class="second-content">
+          <div class="dishes-type">
+            <!-- <p>菜品种类</p> -->
+            <ul class="dishes-type-list">
+              
+            </ul>
+          </div>
+          <div class="food-block">
+            
+          </div>
+        </ul>
+      </div>
+    </div>
+    <div class="choose-dishes-block">
+      <div class="choose-msg">
+        <p class="choose-sum">合计:<span class="sum-price">￥0.00</span></p>
+      </div>
+      <div class="choose-dishes-list">
+        <p class="choose-dishes-title">
+          <span>时段</span>
+          <span>菜品</span>
+          <span>单价</span>
+          <span>数量</span>
+        </p>
+        <ul>
+          
+        </ul>
+      </div>
+      <a class="make-order">下单</a>
+      <div class="dock"></div>
+      <div class="sure-popup">
+        <p>确定下单</p>
+        <ul class="sure-order-list"></ul>
+        <div class="popup-operation">
+          <a class="cancel-btn">取消</a>
+          <a class="sure-btn">确定</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pay-pwd">
+      <p class="pay-title">请输入支付密码</p>
+      <div class="pwd-block">
+        <input type="password" maxlength="6" readonly id="pwd" />
+        <p class="pwd-front">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </p>
+      </div>
+      <div class="input-pad">
+        <p>
+          <a class="input-item">1</a>
+          <a class="input-item">2</a>
+          <a class="input-item">3</a>
+        </p>
+        <p>
+          <a class="input-item">4</a>
+          <a class="input-item">5</a>
+          <a class="input-item">6</a>
+        </p>
+        <p>
+          <a class="input-item">7</a>
+          <a class="input-item">8</a>
+          <a class="input-item">9</a>
+        </p>
+        <p>
+          <a class="cancel-item">取消</a>
+          <a class="input-item">0</a>
+          <a class="delete-item"><span class="iconfont icon-huishan" style="font-size: .75rem;"></span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <footer></footer>
+  <script src="../js/jquery.min.js"></script> 
+  <script src="../js/init.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+  <script src="../js/myfetch.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="js/dishes_logic.js"></script>
+</body>
+</html>

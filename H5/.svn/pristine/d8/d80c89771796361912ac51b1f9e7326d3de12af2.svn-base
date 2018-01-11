@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="css/account.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="../index.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">账户中心</p>
+    </div>
+  </header>
+  <section>
+    <div class="account-action">
+      <a href="./personal.html" class="action-item">
+        <span class="item-name">个人信息</span>
+        <span class="iconfont icon-houtui go-ahead"></span>
+      </a>
+    </div>
+    <div class="account-action">
+      <a href="PassWord.html" class="action-item">
+        <span class="item-name">安全设置</span>
+        <span class="iconfont icon-houtui go-ahead"></span>
+      </a>
+    </div>
+    <div class="account-action">
+      <a href="authorizationRecord.html" class="action-item">
+        <span class="item-name">授权记录</span>
+        <span class="iconfont icon-houtui go-ahead"></span>
+      </a>
+    </div>
+    <div class="account-action">
+      <a href="creditPay.html" class="action-item">
+        <span class="item-name">信用支付</span>
+        <span class="iconfont icon-houtui go-ahead"></span>
+      </a>
+    </div>
+    <div class="account-action">
+      <a class="logout-btn">退出登录</a>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/myfetch.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="js/account_logic.js"></script>
+  <script src="../js/jquery.min.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+</body>
+</html>

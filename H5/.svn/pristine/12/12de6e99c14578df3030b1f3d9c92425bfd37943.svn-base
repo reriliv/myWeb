@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../css/common.css?v=1.5.0"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/park.css"/>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="../index.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">停车缴费</p>
+    </div>
+  </header>
+  <section>
+    <div class="payment-block">
+      <div class="input">
+        <p>请输入真实有效车牌，否则无法进行电子支付！</p>
+        <div class="plate-number">
+          <div class="number-block">
+            <input type="text" class="number-item focused" maxlength="1"/><span>|</span>
+            <input type="text" class="number-item" maxlength="1"/><span>|</span>
+            <input type="text" class="number-item" maxlength="1"/><span>|</span>
+            <input type="text" class="number-item" maxlength="1"/><span>|</span>
+            <input type="text" class="number-item" maxlength="1"/><span>|</span>
+            <input type="text" class="number-item" maxlength="1"/><span>|</span>
+            <input type="text" class="number-item" maxlength="1"/>
+          </div>
+          <!-- <div class="car-number">
+            <input type="text" class="car-num" maxlength="7" />
+            <div class="front">
+              <div class="cut-block">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="focused"></span>
+            </div>
+          </div> -->
+          <p class="new-energy-car">
+            <input type="checkbox" id="NECar" />
+            <label for="NECar">
+              <i class="nec-check default"></i>
+              <span>新能源汽车</span>
+            </label>
+          </p>
+        </div>
+        <a class="next">下一步</a>
+      </div>
+      <div class="output">
+        <div class="payment-show">
+          <p class="payment-name">停车费</p>
+          <p class="payment-price">￥25.00</p>
+        </div>
+        <div class="payment-info">
+          <p>
+            <span>入场时间：</span>
+            <span class="in-time">2017-09-16 18:58:59</span>
+          </p>
+          <p>
+            <span>停车时长：</span>
+            <span class="park-time">21时21分41秒</span>
+          </p>
+          <p>
+            <span>入场车牌：</span>
+            <span class="car-num">粤A88888</span>
+          </p>
+        </div>
+        <a class="sure">立即支付</a>
+      </div>
+    </div>
+  </section>
+  <footer></footer>
+  <script src="../js/mobile.rem.js"></script>
+  <script src="../js/jquery.min.js"></script>
+    <script src="../js/init.js"></script> 
+  <script>
+    (function(){
+      
+      $(".loading").fadeOut(500, "linear", function(){
+        $(this).remove();
+      });
+
+    	let setSize = function(){
+    	  let [clientW, clientH] = [$(window).width(), $(window).height()];
+        let marginTop = $(".payment-block").css("marginTop");
+        let top = marginTop.substring(0, marginTop.length - 2)*1;
+    	  $(".payment-block").width(clientW);
+        $(".payment-block").height(clientH-top);
+    	  $(".input").css("left", 0);
+    	  $(".output").width(clientW);
+    	  $(".output").css("left", clientW);
+    	};
+
+    	setSize();
+
+      $(".number-block").on("click", ".number-item", function(){
+        $(this).addClass("focused").siblings().removeClass("focused");
+      });
+
+      $("label").on("click", function(){
+        let _result = document.querySelector("input[type='checkbox']").checked;
+        console.log(_result);
+        if (!_result) {
+          let dom = `<span>|</span><input type="text" class="number-item" maxlength="1"/>`;
+          $(".number-block").append(dom);
+          $(".nec-check").addClass("checked").removeClass("default");
+          $(".number-item").css("width", `.75rem`);
+        }else if($(".number-item").length > 7){
+          console.info($(".number-item").eq($(".number-item").length - 1));
+          if ($(".number-item").last().attr("class").includes("focused")) {
+            $(".number-item").last().removeClass("focused");
+            $(".number-item").eq(6).addClass("focused");
+          }
+          $(".number-item").last().prev("span").remove();
+          $(".number-item").last().remove();
+          $(".nec-check").addClass("default").removeClass("checked");
+          $(".number-item").attr("style", "");
+        }
+      });
+
+      $(".next").on("click", function(){
+      	let clientW = $(window).width();
+        $(".input").stop().animate({"left":-clientW}, 500);
+        $(".output").stop().animate({"left": 0}, 500);
+      });
+
+      /*$(".number-item").on("change", function(){
+        let item = $(".number-item");
+        if ($(this).index() < item.length) {
+          console.log($(this).index(), item.length);
+          $(this).removeClass("focused").blur();
+          item.eq($(this).index()+1).addClass("focused").focus();
+          console.log($(this).index());
+        }
+      });*/
+
+      $(".number-block").on("keyup", ".number-item", function(){
+        if($(this).val()!="" && $(this).next().text() == "|"){
+          $(".number-item").removeClass("focused");
+          $(this).blur();
+          $(this).next().next().addClass("focused");
+          $(this).next().next().focus();
+        }
+      });
+
+      /*$(".car-num").on("keydown", function(event){
+        let _text = $(this).val();
+        console.log(_text.length);
+        if (_text.length>0) {
+          let leftStr = $(".focused").css("left");
+          let _currLeft = leftStr.substring(0, leftStr.length-2)*1;
+          let moveWidth = $(".cut-block span").width()*_text.length+_currLeft % $(".cut-block span").width();
+          $(".focused").stop().animate({"left":moveWidth});
+        }
+      });*/
+
+      /*$(".car-num").on("click", function(){
+        console.log($(this).val().length);
+      });*/
+
+      let getCarNum = function(){
+        let result = "";
+        let items = $(".number-item");
+        for (let i = 0; i < items.length; i++) {
+          result += items.eq(i).val();
+        }
+        return result;
+      };
+
+      let showPayment = function(data){
+        // console.info(data);
+        $(".in-time").text(data.AdmissionTime);
+        $(".park-time").text(data.Time);
+        $(".car-num").text(data.CarNo);
+        $(".payment-price").text(data.Money);
+      };
+
+      $(".next").on("click", function(){
+        let carNum = getCarNum();
+        fetch(`http://120.24.227.174:402/api/Parking/GetThisParking?CarNo=${carNum}`,
+               {
+                 method: "GET",
+                 headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                            "Authorization": localStorage.getItem("token")
+                          }
+               }
+        ).then(function(res){
+          if (res.ok) {
+            res.json().then(function(data){
+              showPayment(data.ResultObject);
+            });
+          }
+        }, function(err){
+          console.error(err);
+        })
+      });
+
+      $(".sure").on("click", function(){
+        sessionStorage.setItem("returnPage",location.href);
+        window.location.href = "../payType.html";
+      });
+
+    })()
+  </script>
+</body>
+</html>

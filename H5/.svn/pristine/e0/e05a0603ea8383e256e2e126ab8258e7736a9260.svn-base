@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/card.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a href="../index.html" class="back-btn"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">在线挂失</p>
+    </div>
+  </header>
+  <section>
+    <div class="card-block">
+      <!-- <li class="card-item" id=${card.Id}>
+        <div class="card-info">
+          <div>
+            <a class="card-num">${card.CardNo}</a>
+            <span class="card-state ${cardState}">
+              <span class="iconfont ${css}"></span>
+              <span class="state-label">${state}</span>
+            </span>
+          </div>
+          <div>
+            <span class="card-balance">￥${card.Money}</span>
+            <span></span>
+          </div>
+        </div>
+        <div>
+          <p>副卡:</p>
+          <ul class="second-card-list">
+            <li class="secondCard-item">
+              <span class="secondCard-name">${child.CardNo}</span>
+              <span class=${cardState}><i class="iconfont ${css}"></i>${state}</span>
+            </li>
+          </ul>
+        </div>
+      </li> -->
+    </div>
+  </section>
+  <footer></footer>
+  <script src="../js/jquery.min.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/myfetch.js"></script>
+  <script src="js/lostList_logic.js"></script>
+    <script src="../js/init.js"></script>
+</body>
+</html>

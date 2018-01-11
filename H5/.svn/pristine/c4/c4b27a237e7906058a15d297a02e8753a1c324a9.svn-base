@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="css/common.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/iconfont.css"/>
+  <link rel='stylesheet' href='css/loading.css'/>
+  <title>卡城科技</title>
+</head>
+<body class="login-bg">
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/loading.js"></script>
+  <header>
+    <div class="bind-title">
+      <span class="wechat-logo"><img src="images/head.jpg" alt="微信头像"/></span>
+      <p class="wechat-name">微信用户名</p>
+    </div>
+  </header>
+  <section>
+    <div class="bind-block">
+      <div class="bind-tips">请绑定一卡通账号</div>
+      <div class="login-item">
+        <span class="iconfont icon-zhanghu"></span>
+        <input type="text" class="user-name" placeholder="用户名" value="" />
+      </div>
+      <div class="login-item">
+        <span class="iconfont icon-mima"></span>
+        <input type="password" class="pass-word" placeholder="密码" value="" />
+      </div>
+      <a class="bind-btn">立即绑定</a>
+      <a href="./login.html" class="unbind-btn">暂不绑定</a>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="js/mobile.rem.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/md5.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/myfetch.js"></script>
+  <script src="js/AlertMsg.js"></script>
+    <script src="js/init.js"></script>
+  <script>
+    (function(){
+
+    	let initWeChatInfo = function(){
+    		let dataStr = sessionStorage.getItem("Info");
+    		console.log(dataStr);
+    		let data = JSON.parse(dataStr);
+    		console.log(data);
+    		sessionStorage.setItem("openid", data.ResultObject.OpenId);
+    		$(".wechat-logo").find("img").attr("src", data.ResultObject.HeadImgUrl);
+    		$(".wechat-name").text(data.ResultObject.NickName);
+    	}();
+
+      $(".loading").fadeOut(500, "linear", function(){
+        $(this).remove();
+      });
+
+      let parseData = function(data){
+        console.info(data);
+        if (data.StatusCode == 10000) {
+        	sessionStorage.removeItem("Info");
+        	sessionStorage.removeItem("openid");
+          console.log("有数据");
+          HideMsg(data.Message);
+          localStorage.setItem("token", `basic ${data.ResultObject}`);
+          window.location.href = "index.html";
+        }else if (data.StatusCode >= 20000 && data.StatusCode <= 20010) {
+          alert(data.Message);
+          // getWeakToken();
+        }else{
+          // $("section").find(".loading").remove();
+          let result = confirm(data.Message);
+          if (result) {
+          	AlertMsg("换绑中...");
+          	let myfetch = new MyFetch();
+          	myfetch.send(
+          		1,
+          		"/api/passport/WeiUserBind",
+          		`UserName=${$(".user-name").val()}&Password=${$(".pass-word").val()}&WeChatOpenId=${sessionStorage.getItem("openid")}&IsConfirm=true`,
+          		parseData
+          	);
+          }
+          // $(".alert-msg").stop().animate({"top": $(".alert-msg").height()*-1}, 500);
+        }
+      };
+
+      $(".bind-btn").on("click", function(){
+        AlertMsg("登录中...");
+
+        let [username, password] = [$(".user-name").val(), $(".pass-word").val()];
+        let body = `UserName=${username}&Password=${password}&WeChatOpenId=${sessionStorage.getItem("openid")}`;
+        sessionStorage.setItem("body", body);
+        let fetch = new MyFetch();
+        fetch.send(
+          1,
+          "/api/passport/WeiUserBind",
+          body,
+          parseData
+        );
+      });
+
+      $(".login-item").on("click", function(){
+        $(this).find("input").focus();
+      });
+
+    })()
+  </script>
+</body>
+</html>

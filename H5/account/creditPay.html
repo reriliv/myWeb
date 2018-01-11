@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="css/account.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body id="credit-body">
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="./account.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">信用支付</p>
+    </div>
+  </header>
+  <section>
+    <div class="credit-block">
+      <div class="credit-pay-info">
+        <div class="credit-pay-item">
+          <p>剩余金额(元)</p>
+          <p class="credit-usable">500</p>
+          <p class="dot-line"></p>
+          <p>将在2018年01月26日结算</p>
+        </div>
+        <div class="credit-pay-msg">
+          <div class="credit-msg-item">
+            <p>每月1号</p>
+            <p>结算日</p>
+          </div>
+          <div class="credit-msg-item">
+            <p>500.00</p>
+            <p>总额度</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/myfetch.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="./js/author_logic.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+</body>
+</html>

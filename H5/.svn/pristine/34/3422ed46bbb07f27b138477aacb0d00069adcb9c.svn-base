@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/order.css?v=1.7.0"/>
+  <link rel="stylesheet" href="css/LCalendar.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="../index.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">在线订餐</p>
+    </div>
+    <div class="order-person">
+      <select name="order-person" id="#0">
+        <option>选择就餐人员</option>
+        <option value="0">司徒一二</option>
+        <option value="1">王五</option>
+        <option value="2">张三</option>
+        <option value="3">李四</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+  </header>
+  <section>
+    <div class="order-date">
+      <div class="date-top">
+        <a class="prev-month"><i class="iconfont icon-houtui"></i><span>上一月</span></a>
+        <input type="text" class="date-input" id="date" value="2017年9月" readonly />
+        <a class="next-month"><span>下一月</span><i class="iconfont icon-qianjin"></i></a>
+      </div>
+      <div class="date-bottom">
+        <p class="week-title">
+          <span class="week-name">一</span>
+          <span class="week-name">二</span>
+          <span class="week-name">三</span>
+          <span class="week-name">四</span>
+          <span class="week-name">五</span>
+          <span class="week-name">六</span>
+          <span class="week-name">日</span>
+        </p>
+        <ul class="month">
+
+        </ul>
+      </div>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/myfetch.js"></script>
+  <script src="js/order_logic.js"></script>
+  <script src="js/LCalendar.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+
+    $(".loading").fadeOut(500, "linear", function(){
+      // $(this).remove();
+    });
+
+    var calendarym = new LCalendar();
+    calendarym.init({
+        'trigger': '#date',
+        'type': 'ym',
+        'minDate': '2016-1',
+        'maxDate': (new Date().getFullYear() + 1) + '-12'
+    });
+
+  </script>
+</body>
+</html>

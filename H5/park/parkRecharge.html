@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/park.css"/>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="parkRechargeList.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">停车费充值</p>
+    </div>
+  </header>
+  <section>
+    <div class="recharge-block">
+      <div class="charge-card">
+        <p class="card-top">
+          <span class="card-num"></span>
+          <span class="card-state">
+            <span class="iconfont"></span>
+            <span class="state-label"></span>
+          </span>
+        </p>
+        <p class="card-bottom">
+          <span class="remain"></span>
+          <span class="type">月保卡</span>
+        </p>
+      </div>
+      <div class="park-charge-block">
+        <p>请选择或输入需要充值的金额：</p>
+        <ul class="charge-list">
+          <!-- <li class="park-charge-item choosed">
+            <p>2个月</p>
+            <p>￥500</p>
+          </li>
+          <li class="park-charge-item">
+            <p>2个月</p>
+            <p>￥900</p>
+          </li>
+          <li class="park-charge-item">
+            <p>3个月</p>
+            <p>￥1300</p>
+          </li> -->
+        </ul>
+        <a class="sure">充值</a>
+      </div>
+    </div>
+  </section>
+  <footer></footer>
+  <script src="../js/mobile.rem.js"></script>
+  <script src="../js/jquery.min.js"></script>
+    <script src="../js/init.js"></script> 
+  <script>
+    (function(){
+
+      let showCardInfo = function(data){
+        console.info(data);
+        let [cardState, css, state] = ["", "", ""];
+        switch(data.State){
+          case 0:
+          [cardState, css, state] = ["lost", "icon-zliconstop01", "挂失"];
+          break;
+          case 1:
+          [cardState, css, state] = ["using", "icon-gou", "正用"];
+          break;
+        }
+        $(".card-num").text(data.CardNo);
+        $(".card-state").addClass(cardState);
+        $(".card-state").find(".iconfont").addClass(css);
+        $(".state-label").text(state);
+        $(".remain").text(`￥${data.Money.toFixed(2)}`);
+      };
+
+      let init = function(){
+        fetch(`http://120.24.227.174:402/api/Cards/GetMyOneCard?Id=${sessionStorage.getItem("cardId")}`,
+               {
+                method: "GET",
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                           "Authorization": localStorage.getItem("token")
+                         }
+               }).then(function(res){
+                 if (res.ok) {
+                   res.json().then(function(data){
+                     showCardInfo(data.ResultObject);
+                   });
+                 }
+               }, function(err){
+                 console.error(err);
+               });
+      };
+
+      init();
+
+      $(".park-charge-item").on("click", function(){
+        $(this).siblings().removeClass("choosed");
+        $(this).addClass("choosed");
+      });
+    })()
+  </script>
+</body>
+</html>

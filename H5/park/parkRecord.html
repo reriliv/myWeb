@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>卡城科技</title>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/park.css"/>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a href="../index.html" class="back-btn"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">停车记录</p>
+    </div>
+  </header>
+  <section>
+    <div class="record-block">
+
+    </div>
+  </section>
+  <footer></footer>
+  <script src="../js/mobile.rem.js"></script>
+  <script src="../js/jquery.min.js"></script>
+    <script src="../js/init.js"></script> 
+  <script>
+
+    let showData = function(data){
+      console.info(data);
+      data.ResultObject.List.forEach( (item, i) => {
+        let dom = `<div class="record-item" id=${item.Id}>
+                     <div class="top">
+                       <span class="car-number">${item.CarNo}</span>
+                       <span class="payment-money">￥${item.Money}</span>
+                     </div>
+                     <div class="bottom">
+                       <span class="pay-type">${item.PayMethod}</span>
+                       <span class="pay-time">
+                         <p>入场：<span class="entrance">${item.AdmissionTime}</span></p>
+                         <p>出场：<span class="entrance">${item.AppearanceTime}</span></p>
+                       </span>
+                     </div>
+                   </div>`;
+        $(".record-block").append(dom);
+      });
+    };
+
+    let init = function(){
+      fetch("http://120.24.227.174:402/api/Parking/ParkingRecordPagingList", {method: "GET"}).then(function(res){
+        if (res.ok) {
+          res.json().then(function(data){
+            showData(data);
+          });
+        }
+      }, function(err){
+        console.error(err);
+      });
+    };
+
+    init();
+
+  </script>
+</body>
+</html>

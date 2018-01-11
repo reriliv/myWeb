@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
+  <title>卡城科技</title>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel="stylesheet" href="css/order.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a href="../index.html" class="back-btn"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">订餐记录</p>
+    </div>
+  </header>
+  <section>
+    <div class="book-block">
+      <ul class="record-list">
+        <!-- <li class="record-item">
+          <div class="record-order">
+            <p>
+              <span class="date">2017-10-26</span>
+              <span class="sum">总金额：￥<span>30</span></span>
+            </p>
+            <p>
+              <a class="food-time">早餐</a>
+              <a class="food-time">中餐</a>
+            </p>
+          </div>
+          <div class="record-detail">
+            <div class="record-food-block">
+              <ul style="display: none;">
+                <li class="detail-item">
+                  <input type="checkbox"/>
+                  <span class="record-checkbox">
+                    <label for="0" class="check-img"></label>
+                    <input id="0" type="checkbox"/>
+                  </span>
+                  <span class="record-icon"><img src="" alt="菜图"/></span>
+                  <span class="record-info">
+                    <span class="record-name">红烧茄子</span>
+                    <span class="record-state">待取餐</span>
+                  </span>
+                  <span class="record-msg">
+                    <span class="record-price">￥15</span>
+                    <span class="record-num">X2</span>
+                  </span>
+                </li>
+              </ul>
+              <ul style="display: none;">
+                <li class="detail-item">
+                  <input type="checkbox"/>
+                  <span class="record-checkbox">
+                    <label for="0" class="check-img"></label>
+                    <input id="0" type="checkbox"/>
+                  </span>
+                  <span class="record-icon"><img src="" alt="菜图"/></span>
+                  <span class="record-info">
+                    <span class="record-name">清蒸排骨</span>
+                    <span class="record-state">待取餐</span>
+                  </span>
+                  <span class="record-msg">
+                    <span class="record-price">￥15</span>
+                    <span class="record-num">X2</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="detail-bottom">
+              <span>
+                <span class="record-checkbox">
+                  <label for="all" class="check-img"></label>
+                  <input id="all" type="checkbox"/>
+                </span>
+                全选
+              </span>
+              <a class="cancel-order">取消订单</a>
+            </div>
+          </div>
+        </li> -->
+      </ul>
+    </div>
+  </section>
+  <footer></footer>
+  <script src="../js/mobile.rem.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/myfetch.js"></script>
+  <script src="js/orderRecord_logic.js"></script>
+    <script src="../js/init.js"></script>
+</body>
+</html>

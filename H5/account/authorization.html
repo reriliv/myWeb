@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="css/account.css"/>
+  <link rel="stylesheet" href="../css/iconfont.css"/>
+  <link rel='stylesheet' href='../css/loading.css'/>
+  <script src="../js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/loading.js"></script>
+  <header>
+    <div class="header-block">
+      <a class="back-btn" href="./account.html"><span class="iconfont icon-houtui"></span></a>
+      <p class="header-title">账户授权</p>
+    </div>
+  </header>
+  <section>
+    <div class="authorization-block">
+      <div class="authorization-search">
+        <input type="number" class="authorization-search-input" placeholder="请输入被授权人的手机号" />
+        <button class="authorization-search-button iconfont icon-sousuo1"></button>
+      </div>
+      <div class="authorization-person-info">
+        <!-- 显示被授权人的信息 -->
+        <div class="person-item">
+          <div class="person-info">
+            <div>
+              <p>手机号123456789</p>
+              <p>工号123456789</p>
+              <p>姓名</p>
+            </div>
+            <div><img src="../images/head.jpg" alt="头像"></div>
+          </div>
+          <p class="authorization-name">权限：</p>
+          <div class="authorization-list">
+            <span class="authorization-item">
+              代订餐
+              <!-- <input type="checkbox" id="1" />
+              <label for="1"><i class="iconfont icon-gou"></i><span>代订餐</span></label> -->
+            </span>
+          </div>
+        </div>
+      </div>
+      <a class="authorization-btn">确认授权</a>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="../js/myfetch.js"></script>
+  <script src="../js/AlertMsg.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="./js/authorization_logic.js"></script>
+    <script src="../js/init.js"></script>
+  <script>
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+  </script>
+</body>
+</html>

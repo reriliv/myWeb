@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="css/common.css"/>
+  <link rel="stylesheet" href="css/iconfont.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel='stylesheet' href='css/loading.css'/>
+  <script src="js/mobile.rem.js"></script>
+  <title>卡城科技</title>
+</head>
+<body>
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/loading.js"></script>
+  <header>
+    <!-- 头部 -->
+    <div class="header-background">
+      <div class="header-icon">
+        <a><img src="images/head.jpg" alt="头像" /></a>
+      </div>
+      <p class="header-name">--</p>
+      <a href="acount/account.html" class="set-btn">
+        <img src="images/setting.png" alt="账户设置"/>
+      </a>
+    </div>
+  </header>
+  <section>
+
+    <div class="module">
+      <h3 class="module-title">IC卡管理</h3>
+      <ul class="module-block">
+        <li class="module-item">
+          <a href="card/cardList.html">
+            <span class="iconfont icon-icqia"></span>IC卡列表
+          </a>
+        </li>
+        <li class="module-item">
+          <a href="card/recharge.html">
+            <span class="iconfont icon-chongzhi"></span>
+            余额充值
+          </a>
+        </li>
+        <li class="module-item">
+          <a href="card/accountRecord.html">
+            <span class="iconfont icon-shouzhijilu"></span>
+            账户收支
+          </a>
+        </li>
+        <li class="module-item">
+          <a href="card/reportLostList.html">
+            <span class="iconfont icon-guashi"></span>
+            在线挂失
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h3 class="module-title">网上订餐</h3>
+      <ul class="module-block">
+        <li class="module-item">
+          <a href="order/order.html">
+            <span class="iconfont icon-dingcan1"></span>
+            在线订餐
+          </a>
+        </li>
+        <li class="module-item">
+          <a href="order/orderRecord.html">
+            <span class="iconfont icon-foodrecord"></span>
+            订餐记录
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h3 class="module-title">在线停车场</h3>
+      <ul class="module-block">
+        <li class="module-item">
+          <a href="park/parkPayment.html" style="color: #999;">
+            <span class="iconfont icon-tingche1"></span>
+            停车缴费
+          </a>
+        </li>
+        <li class="module-item">
+          <a href="park/parkRecord.html" style="color: #999;">
+            <span class="iconfont icon-jilu"></span>
+            停车记录
+          </a>
+        </li>
+        <!-- <li class="module-item">
+          <a href="park/parkRechargeList.html">停车费充值</a>
+        </li> -->
+      </ul>
+    </div>
+
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="js/common.js"></script>
+  <input type="hidden" id="user-logo-lazy" value="./images/head.jpg"/>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/md5.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/myfetch.js"></script>
+  <script src="js/AlertMsg.js"></script>
+    <script src="js/init.js"></script>
+  <script>
+
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+
+    let showInfo = function(data){
+      $(".alert-msg").text(data.Message);
+      let [headImg, name] = [data.ResultObject.LogoImage, data.ResultObject.PersonName];
+      /*sessionStorage.setItem("headImg", headImg);
+      sessionStorage.setItem("name", name);*/
+      if (headImg != "") {
+        document.querySelector(".header-icon").querySelector("img").src = headImg;
+      }
+      document.querySelector(".header-name").innerHTML = name;
+      $(".alert-msg").stop().animate({"top": $(".alert-msg").height()*-1}, 500);
+    };
+
+    let checkHead = function(){
+      let fetch = new MyFetch();
+        // 120.24.227.174:402
+        AlertMsg("获取信息中...");
+        fetch.get(
+          1,
+          `/api/home/VisitorInfo`,
+          null,
+          showInfo
+        );
+    };
+    checkHead();
+
+    $(".module").last().on("click", ".module-item", function(){
+      console.log("即将上线");
+    });
+
+    let checkLogin = function(){
+      if (localStorage.getItem("token") == null) {
+        // window.location.href = "login.html";
+        $(".module-item a").attr("href", "login.html");
+      }
+    };
+
+    checkLogin();
+
+    let coming = function(){
+      $(".module").last().find("a").attr("href", "#");
+    };
+    coming();
+
+    let showAlert = function(){
+      let [_clientW, _clientH] = [$(window).width(), $(window).height()];
+      let dom = `<div class="alert">即将上线，敬请期待</div>`;
+      $("body").append(dom);
+      let [_width, _height] = [$(".alert").width(), $(".alert").width()];
+      $(".alert").css({"top": (_clientH - _height)/5, "left":(_clientW - _width)/2});
+      hideAlert();
+    };
+
+    let hideAlert = function(){
+      $(".alert").fadeOut(3000, function(){
+        $(this).remove();
+      });
+    };
+
+    $(".module").last().on("click", ".module-item", function(){
+      showAlert();
+    });
+
+    // 余额充值
+    /*$(".module").first().on("click", ".module-item", function() {
+      if ($(this).index() == 1) {
+        $(this).find("a").attr("href", "#");
+        showAlert();
+      }
+    });*/
+
+    $(".module").first().on("click", ".module-item", function(){
+      if ($(this).index() == 1) {
+        sessionStorage.setItem("lastPage", window.location.href);
+      }
+    });
+
+  </script>
+   
+</body>
+</html>

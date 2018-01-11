@@ -1,0 +1,82 @@
+.account-action{ display: block; margin-bottom: .5rem; background: #fff; border-bottom: 1px solid #eee; }
+.account-action:first-child{ margin-top: 1.75rem; /* padding: .25rem; box-shadow: 0 0.15rem 0.5rem #999; */ }
+.account-action:last-child{ margin: 1.5rem auto 0; width: 90%; background: transparent; }
+.account-head{ display: block; margin: 0 auto; width: 2rem; height: 2rem; border-radius: 1rem; overflow: hidden; }
+.account-head img{ display: block; width: 100%; }
+.account-name{ display: block; margin: .25rem auto 0; font-size: .45rem; text-align: center; }
+
+.action-item, .personal-item, .pw-item{ display: flex; justify-content: space-between;padding: .25rem; align-items: center; font-size: .35rem; }
+.go-ahead{ display: inline-block; transform: rotate(180deg); font-size: .35rem !important; }
+.logout-btn{ display: block; padding: .25rem; background: #f84949; color: #fff; font-size: .5rem; text-align: center; box-shadow: 0 0.25rem 1rem #999; }
+
+.personal-item{ background: #fff; border-bottom: 1px solid #eee; }
+.personal-item:first-child{ margin-top: 1.25rem; }
+.personal-item input{ border: 0; text-align: left;}
+.personal-item input:read-only{ text-align: right; }
+.personal-head, .personal-name{ display: inline-block; vertical-align: middle; }
+.personal-head{ width: 1.5rem; height: 1.5rem; border-radius: 1rem; overflow: hidden; }
+
+.change-remark { padding: .25rem .5rem; line-height: 1rem; color: #999; }
+.change-info{ display: block; margin: 0 auto; padding: .25rem 0; width: 90%; text-align: center; background: #0094dc; border: 1px solid #fff; color: #fff; font-size: .5rem; }
+
+.pw-block{ margin-top: 1.25rem; text-align: center; clear: both; }
+.pw-item{ background: #fff; border-bottom: 1px solid #eee; }
+.pw-item#oldPwd{ display: none; }
+.pw-margin{ margin-bottom: .5rem; }
+.pw-item span{ display: inline-block; vertical-align: middle; font-size: .4rem; font-weight: 600; }
+
+.old-password, .new-password, .confirm-new-password{ display: block; width: 100%; border: 0; font-size: .35rem; outline: none; }
+.old-password::placeholder, .new-password::placeholder, .confirm-new-password::placeholder{ color: #999; }
+.confirm-change-btn{ display: block; margin: .5rem; padding: .25rem .5rem; background: #47aee1; border-radius: .15rem; font-size: .45rem; color: #fff; box-shadow: 0 0.15rem 0.25rem #999; }
+
+.using-password{ display: flex; justify-content: space-between; margin: 0 0 .25rem; padding: .5rem; background: #fff; }
+.using-check{ display: block; width: .5rem; height: .5rem; }
+.default{ background: url(../../images/check-false.png) center top no-repeat; background-size: 100% auto; }
+.checked{ background: url(../../images/check-true.png) center top no-repeat; background-size: 100% auto; }
+
+.disabled{ color: #999; background: #ddd; }
+
+.authorization-record-block{ margin-top: 1.25rem; overflow: hidden; }
+.authorization-record-select{ display: flex; justify-content: space-between; }
+.authorization-record-option{ padding: .25rem 0; width: 50%; text-align: center; color: #333; font-size: .5rem; }
+.option-active{ background: #fff; color: #47aee1; }
+.authorization-record-list-block{ display: flex; justify-content: space-between; position: relative; left: 0; }
+.authored-record-list{ width: 100%; }
+.authorization-record-item{ display: flex; justify-content: space-between; margin-top: .25rem; padding: .25rem 1rem; background: #fff; }
+.authorization-record-item div p{ padding: .1rem 0; font-size: .5rem; }
+.authorization-record-item div:last-child p{ text-align: center; }
+.cancel-authorization { display: block; padding: .2rem; background: #f84949; color: #fff; border-radius: .15rem; border: .05rem solid #f84949; }
+
+
+.authorization-block{ display: block; position: relative; margin-top: 1.75rem; }
+.authorization-search{ margin: 0 auto; width: 80%; display: flex; justify-content: space-between; background: #fff; border-radius: 5rem; }
+.authorization-search-input{ padding: .3rem .3rem .3rem .75rem; border: 0; background: transparent; font-size: .45rem; color: #333; outline: 0; }
+.authorization-search-button{ width: 1.25rem; height: 1.25rem; line-height: 1rem; border: 0; background: transparent; outline: 0; border-radius: 1rem; color: #333; }
+.authorization-search-button:active{ background: #47aee1; color: #fff; }
+.authorization-person-info{ margin: 1rem auto; width: 95%; height: 6.5rem; }
+.person-item{ padding: .25rem; background: #fff; }
+.person-info{ display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: .25rem; border-bottom: 1px solid #999; font-size: .5rem; }
+.person-info div:first-child{ width: 60%; }
+.person-info div:last-child{ width: 40%; }
+.person-info div:last-child img{ display: block; width: 100%; }
+.person-info div p{ padding: .25rem 0 }
+.authorization-name{ margin-top: .25rem; }
+.authorization-list{ margin-top: .25rem; width: 100%; }
+.authorization-item{ padding: .1rem; border: 1px solid #666; border-radius: .1rem; font-size: .45rem; }
+label{ color: #333; }
+label i, span{ display: inline-block; vertical-align: middle; margin: 0 .15rem 0 0; }
+.active{ color: #fff; border-color: #47aee1; background-color: #47aee1; }
+.authorization-btn{ display: block; margin: 0 auto; padding: .25rem; width: 90%; /* height: 1.5rem; */ text-align: center; /* line-height: 1.5rem; */ background: #47aee1; color: #fff; font-size: .45rem; }
+
+#credit-body{ background: #fff; }
+.credit-block{ display: block; margin-top: 1.25rem; }
+.credit-pay-info{ margin: 0 auto; width: 100%; background: #47aee1; }
+.credit-pay-item{ padding: .5rem; text-align: center; color: #fff; }
+.credit-usable{ font-size: 2rem; /* color: #47aee1; */ }
+.credit-all{ color: #47aee1; }
+.credit-pay-msg { display: flex; justify-content: space-between; position: relative; bottom: -.75rem; width: 90%; margin: 0 auto; background: #fff; border-top-left-radius: .25rem; border-top-right-radius: .25rem; }
+.credit-msg-item { padding: .25rem 0; width: 50%; text-align: center; }
+.credit-msg-item:first-child{ border-right: 1px solid #ddd; }
+.credit-msg-item:last-child{ border-left: 1px solid #ddd; }
+.credit-msg-item p:first-child{ font-size: .5rem; color: #333; font-weight: bold; }
+.credit-msg-item p:last-child{ font-size: .35rem; color: #999; }

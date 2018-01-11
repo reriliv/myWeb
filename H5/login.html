@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="css/common.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/iconfont.css"/>
+  <link rel='stylesheet' href='css/loading.css'/>
+  <title>卡城科技</title>
+</head>
+<body class="login-bg">
+  <div class="loading">
+    <div class="loader">
+      <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/loading.js"></script>
+  <header>
+    <p class="login-title">
+      <span class="login-logo"><img src="" alt=""/></span>
+      <span class="login-name">
+          <span class="EnterpriseAbbName">卡城科技</span>
+        <span>一卡通微信系统</span>
+      </span>
+    </p>
+  </header>
+  <section>
+    <div class="login-block">
+      <div class="login-item">
+        <span class="iconfont icon-zhanghu"></span>
+        <input type="text" class="user-name" placeholder="用户名" value="" />
+      </div>
+      <div class="login-item">
+        <span class="iconfont icon-mima"></span>
+        <input type="password" class="pass-word" placeholder="密码" value="" />
+      </div>
+      <a class="login-btn">登录</a>
+      <p class="other-login">其他登录方式：</p>
+        <a href="javascript:window.location=_URL[1]+'/api/Passport/WeiLogin';" class="wechat-login">
+            <span class="wechat-login-logo"><img src="./images/wechat.png" alt="微信登录"></span>
+            <span>微信登录</span>
+        </a>
+    </div>
+  </section>
+  <footer><!-- copyright@卡城科技 --></footer>
+  <script src="js/mobile.rem.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/md5.js"></script>
+  <script src="js/myfetch.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/AlertMsg.js"></script>
+    <script src="js/init.js"></script>
+  <script>
+    (function(){
+
+    $(".loading").fadeOut(500, "linear", function(){
+      $(this).remove();
+    });
+
+      let parseData = function(data){
+        console.info(data);
+        if (data.StatusCode <= 20000) {
+          console.log("有数据");
+          localStorage.setItem("token", `basic ${data.ResultObject}`);
+          window.location.href = "index.html";
+        }else if (data.StatusCode == 30002) {
+          console.log("获取弱口令");
+          getWeakToken();
+        }else{
+          // $("section").find(".loading").remove();
+          HideMsg(data.Message);
+          // $(".alert-msg").stop().animate({"top": $(".alert-msg").height()*-1}, 500);
+        }
+      };
+
+      let run_login = function(){
+        AlertMsg("登录中...");
+        let [username, password] = [$(".user-name").val(), $(".pass-word").val()];
+        let body = `UserName=${username}&Password=${password}`;
+        sessionStorage.setItem("body", body);
+        let fetch = new MyFetch();
+        fetch.send(
+          1,
+          "/api/Passport/Login",
+          body,
+          parseData
+        );
+      };
+
+      $(".login-btn").on("click", function(){
+        run_login();
+      });
+
+      $(".login-item").on("click", function(){
+        $(this).find("input").focus();
+      });
+
+      $("input[type='password'], input[type='password']").keyup(function(e){
+        if (e.keyCode == 13) {
+          run_login();
+        }
+      });
+
+      let showMsg = function(data){
+        alert(data);
+      };
+
+    })()
+  </script>
+</body>
+</html>

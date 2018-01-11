@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+<head>
+  <title>测试</title>
+</head>
+<body>
+  <script src="js/myfetch.js"></script>
+  <script>
+
+    const ws = new WebSocket("ws://localhost:3000");
+
+    ws.onopen = e => {
+      console.log("Connect success.");
+      ws.send(`Hello ${e}`);
+    };
+
+    ws.onmessage = e => {
+      const data = e.data;
+      if (typeof data === "string") {
+        console.log("Received string message:", data);
+      }else if (data instanceof Blob) {
+        console.log("Received blob message:", data);
+      }
+    };
+
+    ws.onerror = e => {
+      console.log("WebSocket Error:", e);
+      handleErrors(e);
+    };
+
+    ws.onclose = e => {
+      const code = e.code;
+      const reason = e.reason;
+      console.log("Connection close", code, reason);
+    };
+
+    let handleErrors = function(e){
+      console.error(e);
+    };
+
+  	/*let showMsg = function(data){
+  		console.info(data);
+  	};*/
+
+  	// let fetch1 = new MyFetch();
+  	// fetch1.get(1, `/api/Ordering/GetMealTimes`, `Date=2017-10-24`,showMsg);
+    /*fetch(
+      `http://120.24.227.174:402/api/Ordering/GetMealTimes`
+    ).then(function(res){
+      console.log(res);
+      res.json().then(function(data){
+        console.log(data);
+      });
+    }, function(err){
+      console.error(err);
+    });*/
+  </script>
+</body>
+</html>
